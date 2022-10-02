@@ -17,7 +17,7 @@ class IpgeobaseTest < TestCase
   end
 
   def test_lookup_response_object
-    meta = Ipgeobase.lookup @ip    
+    meta = Ipgeobase.lookup @ip
     assert { 39.03.to_d == meta.lat.to_d }
     assert { -77.5.to_d == meta.lon.to_d }
     assert { 'United States' == meta.country }
