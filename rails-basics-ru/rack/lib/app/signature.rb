@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+require 'digest'
+# Description/Explanation of Signature class
+class Signature
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    status, headers, body = @app.call(env)
+    hash = Digest::SHA256.hexdigest body.first
+    [status, headers, body << hash]
+  end
+end
