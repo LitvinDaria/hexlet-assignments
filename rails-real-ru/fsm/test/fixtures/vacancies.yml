@@ -7,14 +7,14 @@
 on_moderate:
   title: title
   description: description
-  aasm_state: on_moderate
+  vacancie_state: on_moderate
 
 published:
   title: title
   description: description
-  aasm_state: published
+  vacancie_state: published
 
 archived:
   title: title
   description: description
-  aasm_state: archived
+  vacancie_state: archived

@@ -3,49 +3,40 @@
 require 'test_helper'
 
 class VacanciesControllerTest < ActionDispatch::IntegrationTest
-  test 'publish on moderate' do
-    vacancy = Vacancy.where(vacancie_state: 'on_moderate')
-    # vacancies(:on_moderate)
+  # test 'publish on moderate' do
+  #   vacancy = Vacancy.where(vacancie_state: 'on_moderate')
+  #   # vacancies(:on_moderate)
 
-    patch publish_vacancy_path(vacancy)
+  #   patch publish_vacancy_path(vacancy)
+
+  #   assert_response :redirect
+
+  #   vacancy.reload
+  #   assert { vacancy.published? }
+  # end
+
+  test 'archive on moderate' do
+    vacancy = vacancies(:on_moderate)
+
+    patch archive_vacancy_path(vacancy)
 
     assert_response :redirect
 
     vacancy.reload
-    assert { vacancy.published? }
+
+    assert { vacancy.archived? }
   end
 
-#   test 'archive on moderate' do
-#     vacancy = vacancies(:on_moderate)
+  test 'archive published' do
+    vacancy = vacancies(:published)
 
-#     patch archive_vacancy_path(vacancy)
+    patch archive_vacancy_path(vacancy)
 
-#     assert_response :redirect
+    assert_response :redirect
 
-#     vacancy.reload
+    vacancy.reload
 
-#     assert { vacancy.archived? }
-#   end
+    assert { vacancy.archived? }
+  end
 
-#   test 'archive published' do
-#     vacancy = vacancies(:published)
-
-#     patch archive_vacancy_path(vacancy)
-
-#     assert_response :redirect
-
-#     vacancy.reload
-
-#     assert { vacancy.archived? }
-#   end
-
-#   test 'refute publish archived' do
-#     vacancy = vacancies(:archived)
-
-#     patch publish_vacancy_path(vacancy)
-
-#     vacancy.reload
-
-#     assert { vacancy.archived? }
-#   end
 end
