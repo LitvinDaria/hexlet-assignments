@@ -3,17 +3,16 @@
 require 'test_helper'
 
 class VacanciesControllerTest < ActionDispatch::IntegrationTest
-  # test 'publish on moderate' do
-  #   vacancy = Vacancy.where(vacancie_state: 'on_moderate')
-  #   # vacancies(:on_moderate)
+  test 'publish on moderate' do
+    vacancy = vacancies(:on_moderate)
 
-  #   patch publish_vacancy_path(vacancy)
+    patch publish_vacancy_path(vacancy)
 
-  #   assert_response :redirect
+    assert_response :redirect
 
-  #   vacancy.reload
-  #   assert { vacancy.published? }
-  # end
+    vacancy.reload
+    assert { vacancy.published? }
+  end
 
   test 'archive on moderate' do
     vacancy = vacancies(:on_moderate)
