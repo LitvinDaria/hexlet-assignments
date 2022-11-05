@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     # BEGIN
     @search_posts = Post.ransack(params[:search_posts])
-    pp @posts = @search_posts.result
+    @posts = @search_posts.result
     # END
   end
 
